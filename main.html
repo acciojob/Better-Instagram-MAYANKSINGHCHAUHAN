@@ -3,66 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Video Player</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .player { max-width: 600px; margin: auto; }
-        video { width: 100%; }
-        .controls { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #333; color: white; }
-        button { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
-        input { width: 100px; }
-        .progress { flex-grow: 1; height: 5px; background: gray; margin: 0 10px; position: relative; cursor: pointer; }
-        .progress__filled { height: 100%; background: red; width: 0; }
-    </style>
+    <title>Better Instagram</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="player">
-        <video id="video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
-        <div class="controls">
-            <button id="play">►</button>
-            <button id="rewind">« 10s</button>
-            <button id="fastForward">25s »</button>
-            <input id="volume" type="range" min="0" max="1" step="0.05" value="1">
-            <input id="playbackSpeed" type="range" min="0.5" max="2" step="0.1" value="1">
-        </div>
-        <div class="progress" id="progress">
-            <div class="progress__filled" id="progressFilled"></div>
-        </div>
+    <h1>Better Instagram - Drag to Reorder</h1>
+    <div class="grid">
+        <div id="div1" class="draggable" draggable="true"></div>
+        <div id="div2" class="draggable" draggable="true"></div>
+        <div id="div3" class="draggable" draggable="true"></div>
+        <div id="div4" class="draggable" draggable="true"></div>
+        <div id="div5" class="draggable" draggable="true"></div>
+        <div id="div6" class="draggable" draggable="true"></div>
     </div>
-    <script>
-        const video = document.getElementById("video");
-        const playButton = document.getElementById("play");
-        const rewindButton = document.getElementById("rewind");
-        const fastForwardButton = document.getElementById("fastForward");
-        const volume = document.getElementById("volume");
-        const playbackSpeed = document.getElementById("playbackSpeed");
-        const progress = document.getElementById("progress");
-        const progressFilled = document.getElementById("progressFilled");
 
-        playButton.addEventListener("click", () => {
-            if (video.paused) {
-                video.play();
-                playButton.textContent = "❚ ❚";
-            } else {
-                video.pause();
-                playButton.textContent = "►";
-            }
-        });
-
-        rewindButton.addEventListener("click", () => video.currentTime -= 10);
-        fastForwardButton.addEventListener("click", () => video.currentTime += 25);
-        volume.addEventListener("input", () => video.volume = volume.value);
-        playbackSpeed.addEventListener("input", () => video.playbackRate = playbackSpeed.value);
-
-        video.addEventListener("timeupdate", () => {
-            const progressPercent = (video.currentTime / video.duration) * 100;
-            progressFilled.style.width = `${progressPercent}%`;
-        });
-
-        progress.addEventListener("click", (e) => {
-            const newTime = (e.offsetX / progress.offsetWidth) * video.duration;
-            video.currentTime = newTime;
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
